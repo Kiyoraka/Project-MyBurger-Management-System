@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 1,
+  "seededAt": "2026-05-17T21:00:00+08:00",
+  "categories": [
+    { "id": "cat-burgers",  "name": "Burgers",  "slug": "burgers",  "sort": 1, "icon": "burger",  "wide": true  },
+    { "id": "cat-sides",    "name": "Sides",    "slug": "sides",    "sort": 2, "icon": "fries",   "wide": false },
+    { "id": "cat-drinks",   "name": "Drinks",   "slug": "drinks",   "sort": 3, "icon": "cup",     "wide": false },
+    { "id": "cat-combos",   "name": "Combos",   "slug": "combos",   "sort": 4, "icon": "combo",   "wide": false },
+    { "id": "cat-desserts", "name": "Desserts", "slug": "desserts", "sort": 5, "icon": "dessert", "wide": true  }
+  ],
+  "products": [
+    {
+      "id": "prod-classic-smash",
+      "name": "Classic Smash",
+      "category": "cat-burgers",
+      "price": 14.90,
+      "img": "assets/img/burgers/classic-smash.jpg",
+      "desc": "Hand-pressed beef patty smashed on a flat-top, soft brioche bun, American cheese, house sauce.",
+      "dietary": [],
+      "popular": true,
+      "active": true,
+      "modifiers": [
+        { "id": "mod-size", "label": "Size", "type": "radio", "required": true,
+          "options": [
+            { "id": "size-reg", "label": "Regular", "price": 0,    "default": true },
+            { "id": "size-lrg", "label": "Large",   "price": 4.00 }
+          ]
+        },
+        { "id": "mod-patty", "label": "Patty", "type": "radio", "required": true,
+          "options": [
+            { "id": "patty-single", "label": "Single", "price": 0,    "default": true },
+            { "id": "patty-double", "label": "Double", "price": 5.00 }
+          ]
+        },
+        { "id": "mod-cheese", "label": "Cheese", "type": "checkbox", "max": 2,
+          "options": [
+            { "id": "cheese-amer", "label": "American", "price": 0,    "default": true },
+            { "id": "cheese-ched", "label": "Cheddar",  "price": 2.00 }
+          ]
+        },
+        { "id": "mod-toppings", "label": "Toppings", "type": "checkbox", "max": 4,
+          "options": [
+            { "id": "top-bacon",      "label": "Bacon",            "price": 2.00 },
+            { "id": "top-jalapeno",   "label": "Jalapeno",         "price": 1.00 },
+            { "id": "top-pickle",     "label": "Pickle",           "price": 0    },
+            { "id": "top-onion-car",  "label": "Caramelised Onion","price": 1.00 }
+          ]
+        },
+        { "id": "mod-sauce", "label": "Sauces", "type": "checkbox",
+          "options": [
+            { "id": "sauce-house", "label": "House",      "price": 0, "default": true },
+            { "id": "sauce-bbq",   "label": "BBQ",        "price": 0 },
+            { "id": "sauce-mayo",  "label": "Spicy Mayo", "price": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prod-double-stack",
+      "name": "Double Stack",
+      "category": "cat-burgers",
+      "price": 19.90,
+      "img": "assets/img/burgers/double-stack.jpg",
+      "desc": "Two smashed patties, double American cheese, crispy onions, double sauce -- engineered for excess.",
+      "dietary": [],
+      "popular": true,
+      "active": true,
+      "modifiers": [
+        { "id": "mod-size", "label": "Size", "type": "radio", "required": true,
+          "options": [
+            { "id": "size-reg", "label": "Regular", "price": 0,    "default": true },
+            { "id": "size-lrg", "label": "Large",   "price": 4.00 }
+          ]
+        },
+        { "id": "mod-toppings", "label": "Toppings", "type": "checkbox", "max": 4,
+          "options": [
+            { "id": "top-bacon",      "label": "Bacon",            "price": 2.00 },
+            { "id": "top-jalapeno",   "label": "Jalapeno",         "price": 1.00 },
+            { "id": "top-pickle",     "label": "Pickle",           "price": 0    },
+            { "id": "top-onion-car",  "label": "Caramelised Onion","price": 1.00 }
+          ]
+        },
+        { "id": "mod-sauce", "label": "Sauces", "type": "checkbox",
+          "options": [
+            { "id": "sauce-house", "label": "House",      "price": 0, "default": true },
+            { "id": "sauce-bbq",   "label": "BBQ",        "price": 0 },
+            { "id": "sauce-mayo",  "label": "Spicy Mayo", "price": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prod-crispy-chicken",
+      "name": "Crispy Chicken",
+      "category": "cat-burgers",
+      "price": 15.50,
+      "img": "assets/img/burgers/crispy-chicken.jpg",
+      "desc": "Buttermilk-brined chicken thigh, slaw, pickle, garlic aioli on a potato bun.",
+      "dietary": ["spicy"],
+      "popular": true,
+      "active": true,
+      "modifiers": [
+        { "id": "mod-size", "label": "Size", "type": "radio", "required": true,
+          "options": [
+            { "id": "size-reg", "label": "Regular", "price": 0,    "default": true },
+            { "id": "size-lrg", "label": "Large",   "price": 4.00 }
+          ]
+        },
+        { "id": "mod-spice", "label": "Spice Level", "type": "radio", "required": true,
+          "options": [
+            { "id": "spice-mild",  "label": "Mild",   "price": 0, "default": true },
+            { "id": "spice-med",   "label": "Medium", "price": 0 },
+            { "id": "spice-hot",   "label": "Hot",    "price": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prod-bbq-bacon",
+      "name": "BBQ Bacon",
+      "category": "cat-burgers",
+      "price": 17.90,
+      "img": "assets/img/burgers/bbq-bacon.jpg",
+      "desc": "Smashed patty, smoky bacon, cheddar, crispy onions, signature BBQ glaze.",
+      "dietary": [],
+      "popular": true,
+      "active": true,
+      "modifiers": []
+    },
+    {
+      "id": "prod-veggie-bliss",
+      "name": "Veggie Bliss",
+      "category": "cat-burgers",
+      "price": 13.50,
+      "img": "assets/img/burgers/veggie-bliss.jpg",
+      "desc": "Beetroot-and-quinoa patty, smashed avocado, pickled red onion, tahini lime.",
+      "dietary": ["vegetarian"],
+      "popular": false,
+      "active": true,
+      "modifiers": []
+    },
+    {
+      "id": "prod-truffle-fries",
+      "name": "Truffle Fries",
+      "category": "cat-sides",
+      "price": 9.90,
+      "img": "assets/img/burgers/truffle-fries.jpg",
+      "desc": "Skin-on fries tossed in truffle oil, parmesan, fresh parsley.",
+      "dietary": ["vegetarian"],
+      "popular": false,
+      "active": true,
+      "modifiers": [
+        { "id": "mod-size", "label": "Size", "type": "radio", "required": true,
+          "options": [
+            { "id": "size-reg", "label": "Regular", "price": 0,    "default": true },
+            { "id": "size-lrg", "label": "Large",   "price": 3.00 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prod-onion-rings",
+      "name": "Onion Rings",
+      "category": "cat-sides",
+      "price": 7.90,
+      "img": "assets/img/burgers/onion-rings.jpg",
+      "desc": "Beer-battered onion rings with chipotle dip.",
+      "dietary": ["vegetarian"],
+      "popular": false,
+      "active": true,
+      "modifiers": []
+    },
+    {
+      "id": "prod-coke-can",
+      "name": "Coke Can",
+      "category": "cat-drinks",
+      "price": 4.50,
+      "img": "assets/img/burgers/coke-can.jpg",
+      "desc": "Chilled 320ml can.",
+      "dietary": [],
+      "popular": false,
+      "active": true,
+      "modifiers": []
+    },
+    {
+      "id": "prod-iced-tea",
+      "name": "House Iced Tea",
+      "category": "cat-drinks",
+      "price": 6.90,
+      "img": "assets/img/burgers/iced-tea.jpg",
+      "desc": "Brewed black tea, lemon, palm sugar -- house recipe.",
+      "dietary": ["vegetarian"],
+      "popular": false,
+      "active": true,
+      "modifiers": []
+    },
+    {
+      "id": "prod-classic-combo",
+      "name": "Classic Smash Combo",
+      "category": "cat-combos",
+      "price": 22.90,
+      "img": "assets/img/burgers/classic-combo.jpg",
+      "desc": "Classic Smash + Regular Fries + Iced Tea. Save RM 4.40 vs ordering separately.",
+      "dietary": [],
+      "popular": true,
+      "active": true,
+      "modifiers": []
+    },
+    {
+      "id": "prod-double-combo",
+      "name": "Double Stack Combo",
+      "category": "cat-combos",
+      "price": 27.90,
+      "img": "assets/img/burgers/double-combo.jpg",
+      "desc": "Double Stack + Large Truffle Fries + Coke Can. The full intent.",
+      "dietary": [],
+      "popular": false,
+      "active": true,
+      "modifiers": []
+    },
+    {
+      "id": "prod-soft-serve",
+      "name": "Vanilla Soft Serve",
+      "category": "cat-desserts",
+      "price": 6.50,
+      "img": "assets/img/burgers/soft-serve.jpg",
+      "desc": "Bean-vanilla soft serve in a waffle cup.",
+      "dietary": ["vegetarian"],
+      "popular": false,
+      "active": true,
+      "modifiers": [
+        { "id": "mod-topping", "label": "Topping", "type": "radio", "required": true,
+          "options": [
+            { "id": "top-plain",  "label": "Plain",            "price": 0, "default": true },
+            { "id": "top-choc",   "label": "Chocolate Drizzle","price": 1.50 },
+            { "id": "top-caramel","label": "Salted Caramel",   "price": 1.50 }
+          ]
+        }
+      ]
+    }
+  ],
+  "inventory": [
+    { "productId": "prod-classic-smash",   "stock": 42,  "lowStockAt": 10, "lastRestock": "2026-05-14" },
+    { "productId": "prod-double-stack",    "stock": 8,   "lowStockAt": 10, "lastRestock": "2026-05-13" },
+    { "productId": "prod-crispy-chicken",  "stock": 30,  "lowStockAt": 10, "lastRestock": "2026-05-15" },
+    { "productId": "prod-bbq-bacon",       "stock": 24,  "lowStockAt": 10, "lastRestock": "2026-05-14" },
+    { "productId": "prod-veggie-bliss",    "stock": 15,  "lowStockAt": 5,  "lastRestock": "2026-05-10" },
+    { "productId": "prod-truffle-fries",   "stock": 15,  "lowStockAt": 20, "lastRestock": "2026-05-14" },
+    { "productId": "prod-onion-rings",     "stock": 22,  "lowStockAt": 10, "lastRestock": "2026-05-15" },
+    { "productId": "prod-coke-can",        "stock": 120, "lowStockAt": 24, "lastRestock": "2026-05-12" },
+    { "productId": "prod-iced-tea",        "stock": 60,  "lowStockAt": 20, "lastRestock": "2026-05-14" },
+    { "productId": "prod-classic-combo",   "stock": 40,  "lowStockAt": 10, "lastRestock": "2026-05-14" },
+    { "productId": "prod-double-combo",    "stock": 28,  "lowStockAt": 10, "lastRestock": "2026-05-14" },
+    { "productId": "prod-soft-serve",      "stock": 35,  "lowStockAt": 10, "lastRestock": "2026-05-15" }
+  ],
+  "orders": [],
+  "settings": {
+    "site": {
+      "name": "MyBurger",
+      "logo": "assets/img/logo.svg",
+      "hero": {
+        "headline": "Fresh. Smashed. Always.",
+        "subtext": "Hand-pressed beef, soft brioche, stupid-good sauces. Order ahead and skip the line.",
+        "image": "assets/img/burgers/hero.jpg",
+        "ctaPrimary": "Order Now",
+        "ctaSecondary": "View Menu"
+      },
+      "contact": {
+        "phone": "+60 12 345 6789",
+        "email": "hello@myburger.example.com",
+        "address": "Lot 12, Jalan Burger, Kuala Lumpur, Malaysia"
+      },
+      "social": {
+        "instagram": "https://instagram.com/myburger",
+        "facebook":  "https://facebook.com/myburger",
+        "tiktok":    "https://tiktok.com/@myburger"
+      },
+      "fulfilment": {
+        "pickupEnabled": true,
+        "deliveryEnabled": true,
+        "deliveryFee": 5.00,
+        "minOrderForDelivery": 25.00,
+        "deliveryRadiusNote": "Within 5km of branch. Larger orders may take longer.",
+        "pickupEstimate": "15 min",
+        "deliveryEstimate": "35 min"
+      },
+      "hours": {
+        "mon": { "open": "11:00", "close": "22:00" },
+        "tue": { "open": "11:00", "close": "22:00" },
+        "wed": { "open": "11:00", "close": "22:00" },
+        "thu": { "open": "11:00", "close": "22:00" },
+        "fri": { "open": "11:00", "close": "23:00" },
+        "sat": { "open": "11:00", "close": "23:00" },
+        "sun": { "open": "12:00", "close": "22:00" }
+      },
+      "tax": {
+        "serviceChargePct": 6,
+        "sstPct": 0
+      }
+    },
+    "payment": {
+      "provider": "billplz",
+      "mode": "sandbox",
+      "apiKey": "",
+      "collectionId": "",
+      "xSignatureKey": "",
+      "callbackUrl": "https://myburger.example.com/api/billplz/callback",
+      "redirectUrl": "https://myburger.example.com/order/confirm",
+      "acceptedMethods": {
+        "fpx": true,
+        "card": true,
+        "ewallet": true,
+        "cash": true
+      }
+    },
+    "notifications": {
+      "newOrderSound": true,
+      "lowStockAlert": true,
+      "lowStockThresholdGlobal": 10
+    }
+  }
+}
