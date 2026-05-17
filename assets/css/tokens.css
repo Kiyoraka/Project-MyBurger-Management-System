@@ -1,0 +1,177 @@
+/* ============================================================
+   MyBurger -- Design Tokens
+   Single source of truth for colors, type, spacing, radius,
+   shadow, motion, and breakpoints. All other CSS files reference
+   these custom properties. Do not redeclare values here in
+   pages/* or components.css -- consume them.
+   ============================================================ */
+
+:root {
+  /* ---------- Color: Brand palette ---------- */
+  --clr-red:      #E63946;   /* Ketchup-red -- primary CTA, active state, error */
+  --clr-red-700:  #B62A36;   /* Hover/pressed for primary */
+  --clr-red-100:  #FCE3E5;   /* Soft red surface for low-emphasis alerts */
+
+  --clr-mustard:  #F4A261;   /* Mustard -- accent, hover wash, secondary CTA */
+  --clr-mustard-700: #C57A3F;
+  --clr-mustard-100: #FCEBD8;
+
+  --clr-char:     #1B1B1E;   /* Charcoal -- primary text, dark nav, sidebar */
+  --clr-char-800: #2A2A2E;
+  --clr-char-600: #4A4A52;
+
+  --clr-cream:    #FAF6F0;   /* Page background -- warmer than #fff */
+  --clr-cream-200: #F2EBE0;  /* Card surface on cream pages */
+
+  --clr-pickle:   #5C8C3A;   /* Pickle-green -- dietary, success, "open" state */
+  --clr-pickle-700: #466B2C;
+  --clr-pickle-100: #E2EFD4;
+
+  --clr-muted:    #6B6B70;   /* Muted body grey -- secondary text, helper labels */
+  --clr-line:     #E6E1D7;   /* Hairline divider, input border resting */
+  --clr-line-strong: #C9C1B0; /* Stronger divider, input border focus halo */
+
+  --clr-white:    #FFFFFF;
+  --clr-black:    #000000;
+
+  /* ---------- Color: Status semantics ---------- */
+  --clr-success:  #5C8C3A;   /* aliases pickle */
+  --clr-warning:  #F4A261;   /* aliases mustard */
+  --clr-danger:   #E63946;   /* aliases red */
+  --clr-info:     #3A7BBF;
+
+  /* Time-elapsed chips on Orders kanban */
+  --clr-chip-green:  #5C8C3A;  /* < 5 minutes */
+  --clr-chip-amber:  #D89B2F;  /* < 10 minutes */
+  --clr-chip-red:    #E63946;  /* > 10 minutes */
+
+  /* ---------- Color: Semantic aliases ---------- */
+  --bg-page:      var(--clr-cream);
+  --bg-surface:   var(--clr-white);
+  --bg-surface-alt: var(--clr-cream-200);
+  --bg-sidebar:   var(--clr-char);
+  --bg-overlay:   rgba(27, 27, 30, 0.55);  /* Modal scrim */
+
+  --text-primary:   var(--clr-char);
+  --text-secondary: var(--clr-muted);
+  --text-inverse:   var(--clr-cream);
+  --text-link:      var(--clr-red);
+
+  --border-default: var(--clr-line);
+  --border-strong:  var(--clr-line-strong);
+
+  /* ---------- Typography: Families ---------- */
+  --font-display: 'Fraunces', 'Recoleta', Georgia, 'Times New Roman', serif;
+  --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ---------- Typography: Size scale (rem) ---------- */
+  --fs-12: 0.75rem;   /* 12px -- micro labels, chip text */
+  --fs-14: 0.875rem;  /* 14px -- helper, small body */
+  --fs-16: 1rem;      /* 16px -- body default */
+  --fs-18: 1.125rem;  /* 18px -- lead body */
+  --fs-20: 1.25rem;   /* 20px -- subheading */
+  --fs-24: 1.5rem;    /* 24px -- card title */
+  --fs-28: 1.75rem;   /* 28px -- section heading mobile */
+  --fs-32: 2rem;      /* 32px -- section heading desktop */
+  --fs-40: 2.5rem;    /* 40px -- page title */
+  --fs-48: 3rem;      /* 48px -- hero mobile */
+  --fs-64: 4rem;      /* 64px -- hero desktop */
+  --fs-80: 5rem;      /* 80px -- hero XL desktop */
+  --fs-96: 6rem;      /* 96px -- hero giant (only used for ultra-wide) */
+
+  /* ---------- Typography: Weights ---------- */
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semibold: 600;
+  --fw-bold:    700;
+  --fw-black:   900;
+
+  /* ---------- Typography: Line height ---------- */
+  --lh-tight:   1.1;
+  --lh-snug:    1.25;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.65;
+
+  /* ---------- Typography: Tracking ---------- */
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.04em;
+  --tracking-caps:    0.08em;
+
+  /* ---------- Spacing scale (4px base) ---------- */
+  --sp-0:   0;
+  --sp-1:   0.25rem;   /* 4px */
+  --sp-2:   0.5rem;    /* 8px */
+  --sp-3:   0.75rem;   /* 12px */
+  --sp-4:   1rem;      /* 16px */
+  --sp-5:   1.25rem;   /* 20px */
+  --sp-6:   1.5rem;    /* 24px */
+  --sp-8:   2rem;      /* 32px */
+  --sp-10:  2.5rem;    /* 40px */
+  --sp-12:  3rem;      /* 48px */
+  --sp-16:  4rem;      /* 64px */
+  --sp-20:  5rem;      /* 80px */
+  --sp-24:  6rem;      /* 96px */
+
+  /* ---------- Radius ---------- */
+  --radius-input:  8px;
+  --radius-card:   12px;
+  --radius-sheet:  16px;
+  --radius-pill:   999px;
+
+  /* ---------- Shadow ---------- */
+  --shadow-rest:    0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-hover:   0 8px 24px rgba(0, 0, 0, 0.10);
+  --shadow-modal:   0 24px 64px rgba(0, 0, 0, 0.18);
+  --shadow-drawer:  -16px 0 48px rgba(0, 0, 0, 0.12);
+  --shadow-sheet:    0 -12px 32px rgba(0, 0, 0, 0.10);
+  --shadow-inset-focus: inset 0 0 0 2px var(--clr-red);
+
+  /* ---------- Z-index scale ---------- */
+  --z-base:        0;
+  --z-sticky:      100;   /* top-nav, bottom-nav, sticky bars */
+  --z-dropdown:    200;
+  --z-overlay:     900;   /* scrim */
+  --z-drawer:      1000;
+  --z-modal:       1100;
+  --z-toast:       1200;
+
+  /* ---------- Motion ---------- */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:      120ms;
+  --dur-base:      180ms;
+  --dur-slow:      280ms;
+  --dur-sheet:     320ms;
+
+  /* Add-to-cart pop animation duration matches plan spec (180ms ease-out) */
+  --dur-pop:       180ms;
+
+  /* ---------- Touch / hit target ---------- */
+  --touch-min:     44px;
+  --touch-comfort: 48px;
+
+  /* ---------- Breakpoints (for JS reference; CSS uses media queries directly) ---------- */
+  --bp-mobile-max:  767px;
+  --bp-tablet-min:  768px;
+  --bp-tablet-max:  1023px;
+  --bp-desktop-min: 1024px;
+  --bp-wide-min:    1440px;
+
+  /* ---------- Layout: Fixed chrome dimensions ---------- */
+  --nav-height-desktop:    72px;
+  --nav-height-mobile:     56px;
+  --bottom-nav-height:     64px;
+  --sidebar-width:         200px;
+  --sidebar-width-collapsed: 64px;
+  --container-max:         1280px;
+}
+
+/* ---------- Dark surface inversion for admin sidebar / overlays ---------- */
+.is-dark {
+  --bg-surface:   var(--clr-char);
+  --text-primary: var(--clr-cream);
+  --text-secondary: rgba(250, 246, 240, 0.65);
+  --border-default: rgba(250, 246, 240, 0.12);
+}
