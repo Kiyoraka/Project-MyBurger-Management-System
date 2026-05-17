@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Burger placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAF6F0"/>
+      <stop offset="1" stop-color="#F2EBE0"/>
+    </linearGradient>
+    <radialGradient id="plate" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0" stop-color="#E6E1D7" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#E6E1D7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Backdrop -->
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <!-- Plate shadow -->
+  <ellipse cx="200" cy="230" rx="160" ry="28" fill="url(#plate)"/>
+  <!-- Burger composition -->
+  <g transform="translate(80,40)">
+    <!-- Top bun -->
+    <path d="M0 90 Q0 18 120 18 Q240 18 240 90 Z" fill="#F4A261"/>
+    <path d="M0 90 Q0 18 120 18 Q240 18 240 90" fill="none" stroke="#C57A3F" stroke-width="2" opacity="0.5"/>
+    <!-- Sesame seeds -->
+    <ellipse cx="40" cy="50" rx="3" ry="5" fill="#FAF6F0"/>
+    <ellipse cx="80" cy="38" rx="3" ry="5" fill="#FAF6F0"/>
+    <ellipse cx="120" cy="32" rx="3" ry="5" fill="#FAF6F0"/>
+    <ellipse cx="160" cy="38" rx="3" ry="5" fill="#FAF6F0"/>
+    <ellipse cx="200" cy="50" rx="3" ry="5" fill="#FAF6F0"/>
+    <!-- Lettuce -->
+    <path d="M-4 92 Q24 82 60 92 Q96 82 132 92 Q168 82 204 92 Q230 82 244 92 L244 108 L-4 108 Z" fill="#5C8C3A"/>
+    <!-- Tomato -->
+    <ellipse cx="60" cy="118" rx="42" ry="9" fill="#C9342B"/>
+    <ellipse cx="180" cy="118" rx="42" ry="9" fill="#C9342B"/>
+    <!-- Cheese drip -->
+    <path d="M-2 125 L242 125 L246 138 L240 138 L232 148 L226 138 L218 148 L212 138 L204 148 L198 138 L190 148 L184 138 L176 148 L170 138 L162 148 L156 138 L148 148 L142 138 L134 148 L128 138 L120 148 L114 138 L106 148 L100 138 L92 148 L86 138 L78 148 L72 138 L64 148 L58 138 L50 148 L44 138 L36 148 L30 138 L22 148 L16 138 L8 148 L2 138 L-4 138 Z" fill="#F4A261"/>
+    <!-- Patty -->
+    <rect x="-2" y="146" width="244" height="34" rx="6" fill="#3A2419"/>
+    <rect x="-2" y="148" width="244" height="4" fill="#5A3A2A" opacity="0.6"/>
+    <!-- Bottom bun -->
+    <path d="M-2 178 L242 178 Q254 220 120 220 Q-14 220 -2 178 Z" fill="#E6A864"/>
+  </g>
+</svg>

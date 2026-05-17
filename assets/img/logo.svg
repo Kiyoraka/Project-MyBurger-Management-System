@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" role="img" aria-label="MyBurger">
+  <!-- Burger glyph -->
+  <g transform="translate(8,8)">
+    <!-- Top bun -->
+    <path d="M4 24 Q4 6 24 6 Q44 6 44 24 Z" fill="#F4A261"/>
+    <!-- Sesame seeds -->
+    <ellipse cx="14" cy="14" rx="1.4" ry="2" fill="#FAF6F0"/>
+    <ellipse cx="24" cy="11" rx="1.4" ry="2" fill="#FAF6F0"/>
+    <ellipse cx="34" cy="14" rx="1.4" ry="2" fill="#FAF6F0"/>
+    <!-- Lettuce -->
+    <path d="M4 26 Q14 22 24 26 Q34 22 44 26 L44 30 L4 30 Z" fill="#5C8C3A"/>
+    <!-- Patty -->
+    <rect x="3" y="30" width="42" height="8" rx="2" fill="#3A2419"/>
+    <!-- Cheese -->
+    <path d="M3 38 L45 38 L48 41 L45 41 L42 44 L39 41 L36 44 L33 41 L30 44 L27 41 L24 44 L21 41 L18 44 L15 41 L12 44 L9 41 L6 44 L3 41 Z" fill="#F4A261" transform="translate(0,-2)"/>
+    <!-- Bottom bun -->
+    <path d="M4 40 L44 40 Q46 48 24 48 Q2 48 4 40 Z" fill="#E6A864"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="68" y="40" font-family="'Fraunces', 'Recoleta', Georgia, serif" font-weight="900" font-size="28" fill="#1B1B1E" letter-spacing="-0.5">My<tspan fill="#E63946">Burger</tspan></text>
+</svg>
