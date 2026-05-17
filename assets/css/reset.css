@@ -1,0 +1,166 @@
+/* ============================================================
+   MyBurger -- Modern CSS Reset
+   Opinionated reset based on Andy Bell + Josh Comeau patterns,
+   tuned for this project. Load AFTER tokens.css, BEFORE any
+   component or layout CSS.
+   ============================================================ */
+
+/* 1. Use a more intuitive box-sizing on everything (including pseudos). */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin / padding from every element. */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Allow percentage-based heights in the application. */
+html,
+body {
+  height: 100%;
+}
+
+/* 4. Improve text rendering globally. */
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 5. Body baseline -- consume tokens once for the entire document. */
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+  min-height: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 6. Headings inherit a tighter line-height + display family. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+/* 7. Sensible defaults for media. */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 8. Inputs should inherit the body font. */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* 9. Buttons -- reset native chrome, app styles its own. */
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* 10. Lists -- remove bullets when a class is applied. */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* 11. Anchors -- inherit color by default; override per context. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 12. Form / table sanitization. */
+fieldset {
+  border: 0;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* 13. Long-form text wrapping. */
+p, li, dd, blockquote {
+  text-wrap: pretty;
+  max-width: 75ch;
+}
+
+/* 14. Visually hidden helper (a11y -- screen reader only). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 15. Focus -- visible-only outline using brand red. */
+:focus-visible {
+  outline: 2px solid var(--clr-red);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 16. Smooth scrolling unless the user opts out via reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* 17. Reduced motion override -- disable non-essential animation. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 18. Tabular numbers for any element that opts in (prices, KPIs). */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 19. Root #app or main containers fill viewport height for sticky chrome. */
+#app,
+#root,
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
