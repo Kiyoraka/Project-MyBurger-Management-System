@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF6F0" />
+  <meta name="description" content="MyBurger -- fresh, smashed, always. Hand-pressed beef, soft brioche, stupid-good sauces. Order ahead and skip the line." />
+  <title>MyBurger -- Fresh. Smashed. Always.</title>
+
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" />
+
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/layout-customer.css" />
+  <link rel="stylesheet" href="/assets/css/pages/home.css" />
+</head>
+<body>
+  <div class="c-shell">
+
+    <div data-slot="c-topnav"></div>
+
+    <main class="c-main" id="main">
+
+      <!-- ============== Hero ============== -->
+      <section class="c-hero" aria-labelledby="hero-title">
+        <div class="c-hero__inner">
+          <div class="c-hero__copy">
+            <span class="c-hero__eyebrow">Order ahead. Pickup or delivery.</span>
+            <h1 class="c-hero__title" id="hero-title" data-hero="title">Fresh. Smashed. Always.</h1>
+            <hr class="c-hero__title-divider" aria-hidden="true" />
+            <p class="c-hero__subtext" data-hero="subtext">
+              Hand-pressed beef, soft brioche, stupid-good sauces. Order ahead and skip the line.
+            </p>
+            <div class="c-hero__ctas">
+              <a class="btn btn--primary btn--lg" href="/menu.html">Order Now</a>
+              <a class="btn btn--secondary btn--lg" href="/menu.html">View Menu</a>
+            </div>
+          </div>
+          <div class="c-hero__media" data-hero="media">
+            <img src="/assets/img/burgers/hero.svg" alt="A double smashed beef burger on a sesame brioche bun" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ============== Popular This Week ============== -->
+      <section class="c-section c-container" aria-labelledby="popular-title">
+        <header class="c-section__header">
+          <h2 class="c-section__title" id="popular-title">Popular This Week</h2>
+          <a class="c-section__more" href="/menu.html">See all &rarr;</a>
+        </header>
+        <div class="c-product-grid" data-popular-grid>
+          <!-- Product cards injected by assets/js/customer/home.js -->
+        </div>
+      </section>
+
+      <!-- ============== Categories Bento ============== -->
+      <section class="c-section c-container" aria-labelledby="categories-title">
+        <header class="c-section__header">
+          <h2 class="c-section__title" id="categories-title">Categories</h2>
+          <a class="c-section__more" href="/menu.html">Browse menu &rarr;</a>
+        </header>
+        <div class="c-bento" data-bento-grid>
+          <!-- Bento tiles injected by assets/js/customer/home.js -->
+        </div>
+      </section>
+
+      <!-- ============== About anchor (in-page) ============== -->
+      <section class="c-section c-container" id="about" aria-labelledby="about-title">
+        <header class="c-section__header">
+          <h2 class="c-section__title" id="about-title">About MyBurger</h2>
+        </header>
+        <p class="c-hero__subtext" data-about="copy">
+          We started with one griddle, a stack of brioche buns, and a stubborn belief that fast food
+          can taste like it was cooked by someone who cares. Every patty is hand-pressed, smashed thin,
+          and finished with sauces we make ourselves. Pickup ready in fifteen, delivery wherever the
+          map says yes.
+        </p>
+      </section>
+
+      <!-- ============== Locations anchor (in-page) ============== -->
+      <section class="c-section c-container" id="locations" aria-labelledby="locations-title">
+        <header class="c-section__header">
+          <h2 class="c-section__title" id="locations-title">Locations</h2>
+        </header>
+        <p class="c-hero__subtext" data-locations="copy">
+          One flagship griddle in Kelantan, more coming. Check back soon -- or drop us a hello on socials
+          for the latest opening.
+        </p>
+      </section>
+    </main>
+
+    <!-- ============== Footer ============== -->
+    <footer class="c-footer" data-footer>
+      <div class="c-footer__inner">
+        <div class="c-footer__brand">
+          <img src="/assets/img/logo.svg" alt="MyBurger" />
+          <p class="c-footer__tagline" data-footer="tagline">
+            Fresh, smashed, always. Hand-pressed beef and stupid-good sauces.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="c-footer__col-title">Hours</h3>
+          <ul class="c-footer__list" role="list" data-footer="hours">
+            <li>Mon -- Thu &nbsp; 11am -- 10pm</li>
+            <li>Fri -- Sat &nbsp; 11am -- 12am</li>
+            <li>Sunday &nbsp; 12pm -- 9pm</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="c-footer__col-title">Contact</h3>
+          <ul class="c-footer__list" role="list" data-footer="contact">
+            <li><a href="tel:+60123456789">+60 12-345 6789</a></li>
+            <li><a href="mailto:hello@myburger.example.com">hello@myburger.example.com</a></li>
+            <li>Bachok, Kelantan</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="c-footer__col-title">Follow</h3>
+          <ul class="c-footer__list" role="list" data-footer="social">
+            <li><a href="#" rel="noopener">Instagram</a></li>
+            <li><a href="#" rel="noopener">Facebook</a></li>
+            <li><a href="#" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="c-footer__bottom">
+        <span>&copy; <span data-footer="year">2026</span> MyBurger. All rights reserved.</span>
+        <span class="c-footer__payments" aria-label="Accepted payment methods">
+          <span class="pill">FPX</span>
+          <span class="pill">Card</span>
+          <span class="pill">E-Wallet</span>
+          <span class="pill">Cash</span>
+        </span>
+      </div>
+    </footer>
+
+    <div data-slot="c-bottomnav"></div>
+  </div>
+
+  <!-- ============== Scripts ============== -->
+  <script src="/assets/js/state.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/customer/nav.js"></script>
+  <script src="/assets/js/customer/home.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.MyBurger && window.MyBurger.api && window.MyBurger.api.hydrate) {
+        window.MyBurger.api.hydrate();
+      }
+      var nav = window.MyBurger && window.MyBurger.customer && window.MyBurger.customer.nav;
+      if (nav) {
+        nav.renderTopNav('home');
+        nav.renderBottomNav('home');
+      }
+      if (window.MyBurger && window.MyBurger.customer && window.MyBurger.customer.home) {
+        window.MyBurger.customer.home.render();
+      }
+    });
+  </script>
+</body>
+</html>
