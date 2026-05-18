@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>MyBurger Admin -- Inventory</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/layout-admin.css" />
+  <link rel="stylesheet" href="/assets/css/pages/admin-inventory.css" />
+
+  <script src="/assets/js/state.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/admin/auth.js"></script>
+  <script>
+    if (window.MyBurger && window.MyBurger.admin && window.MyBurger.admin.auth) {
+      window.MyBurger.admin.auth.guard();
+    }
+  </script>
+</head>
+<body>
+  <div class="a-shell">
+    <div data-slot="a-sidebar"></div>
+    <div class="a-main">
+      <div data-slot="a-topbar"></div>
+      <div class="a-content">
+
+        <section class="a-inv__kpis" data-kpis></section>
+
+        <header class="a-inv__toolbar">
+          <input class="input" type="search" placeholder="Search product..." data-inv-search />
+        </header>
+
+        <!-- Desktop table -->
+        <div class="a-inv__table-wrap">
+          <table class="a-inv__table" data-inv-table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Stock</th>
+                <th>Low at</th>
+                <th>Last restock</th>
+                <th class="a-inv__actions-col">Actions</th>
+              </tr>
+            </thead>
+            <tbody data-inv-rows></tbody>
+          </table>
+        </div>
+
+        <!-- Mobile card list -->
+        <div class="a-inv__cards" data-inv-cards></div>
+      </div>
+    </div>
+    <div data-slot="a-bottomnav"></div>
+  </div>
+
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/admin/nav.js"></script>
+  <script src="/assets/js/admin/inventory.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.MyBurger && window.MyBurger.api && window.MyBurger.api.hydrate) {
+        window.MyBurger.api.hydrate();
+      }
+      var nav = window.MyBurger && window.MyBurger.admin && window.MyBurger.admin.nav;
+      if (nav) {
+        nav.renderSidebar('inventory');
+        nav.renderTopbar({ title: 'Inventory' });
+        nav.renderBottomNav('inventory');
+      }
+      if (window.MyBurger && window.MyBurger.admin && window.MyBurger.admin.inventory) {
+        window.MyBurger.admin.inventory.render();
+      }
+    });
+  </script>
+</body>
+</html>

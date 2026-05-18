@@ -1,0 +1,176 @@
+/* ============================================================
+   MyBurger -- Admin Inventory
+   Table on desktop, cards on mobile.
+   ============================================================ */
+
+.a-inv__kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+}
+
+.a-inv__kpi {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-rest);
+  padding: var(--sp-3) var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.a-inv__kpi-label {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--clr-muted);
+}
+
+.a-inv__kpi-value {
+  font-family: var(--font-display);
+  font-size: var(--fs-20);
+  font-weight: var(--fw-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.a-inv__toolbar {
+  display: flex;
+  gap: var(--sp-3);
+}
+
+
+/* ---------- Desktop table ---------- */
+
+.a-inv__table-wrap {
+  display: none;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-rest);
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .a-inv__table-wrap {
+    display: block;
+  }
+}
+
+.a-inv__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.a-inv__table th,
+.a-inv__table td {
+  padding: var(--sp-3) var(--sp-4);
+  text-align: left;
+  font-size: var(--fs-14);
+  border-bottom: 1px solid var(--border-default);
+  vertical-align: middle;
+}
+
+.a-inv__table th {
+  background-color: var(--bg-surface-alt);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--clr-muted);
+}
+
+.a-inv__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.a-inv__table tbody tr:hover {
+  background-color: var(--bg-surface-alt);
+}
+
+.a-inv__row--low td {
+  background-color: var(--clr-mustard-100);
+}
+
+.a-inv__row--out td {
+  background-color: var(--clr-red-100);
+}
+
+.a-inv__actions-col {
+  width: 200px;
+  text-align: right;
+}
+
+.a-inv__row-actions {
+  display: inline-flex;
+  gap: var(--sp-2);
+  justify-content: flex-end;
+}
+
+
+/* ---------- Mobile cards ---------- */
+
+.a-inv__cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+@media (min-width: 768px) {
+  .a-inv__cards {
+    display: none;
+  }
+}
+
+.a-inv-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-rest);
+  padding: var(--sp-3) var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.a-inv-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
+.a-inv-card__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-bold);
+}
+
+.a-inv-card__meta {
+  font-size: var(--fs-12);
+  color: var(--text-secondary);
+}
+
+.a-inv-card__actions {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.a-inv-card--low {
+  outline: 2px solid var(--clr-mustard);
+}
+
+.a-inv-card--out {
+  outline: 2px solid var(--clr-red);
+}
+
+
+/* ---------- Restock modal body ---------- */
+
+.a-restock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  width: min(420px, 100vw);
+  padding: var(--sp-5);
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-card);
+}
