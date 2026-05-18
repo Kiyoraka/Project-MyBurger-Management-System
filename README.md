@@ -2,7 +2,7 @@
 
 A modern burger / fast-food ordering platform with a customer storefront and an admin operations dashboard.
 
-Software Version: 0.1.0 (scaffold)
+Software Version: 1.0.0 (Phase 1 -- Phase 6 complete)
 
 ## Description
 
@@ -117,6 +117,18 @@ Modern burger / fast-food (Shake Shack / Smashburger / Five Guys lineage).
 - Inventory tracking with low-stock / out-of-stock indicators, restock and 86-out actions
 - Product catalog editor with photo upload, modifier groups, dietary tags
 - Settings: brand identity, hero content, fulfilment fee, payment gateway (Billplz sandbox + production), hours, notifications
+
+## Verified Flows (1.0.0)
+
+End-to-end flows that work out of the box on first hydration from `seed.json`:
+
+1. Customer places an order on `index.html` -> `menu.html` -> `cart.html` -> `checkout.html`. Cart updates appear in real-time in any open `admin/orders.html` tab (cross-tab via `storage` event); inventory decrements on each line; admin queue beeps for new orders if `Settings -> Notifications -> New-order sound` is on.
+2. Admin advances an order's status: `NEW -> Accept -> PREPARING -> Mark Ready -> READY -> Complete -> DONE`. Time-elapsed chip colors transition green (<5m) -> amber (<10m) -> red (>10m) and refresh every 30s.
+3. Admin restocks inventory: an item below `lowStockAt` clears the low-stock alert on `dashboard.html`, and a previously-sold-out item re-appears on the storefront `Menu` page without the Sold-out badge.
+4. Admin edits a product (name / price / photo / description / category / status): Home Popular grid and Menu page re-render live as `STATE.subscribe(KEYS.PRODUCTS)` fires.
+5. Admin updates `Settings -> Site -> Hero headline` and `Subtext`: the customer Home hero re-paints on the next focus/visibility tick because Home subscribes to settings.
+6. Admin sets `Settings -> Site -> Fulfilment -> Delivery fee`: Cart and Checkout totals reflect the new fee immediately when fulfilment mode is "Delivery". `minOrderForDelivery` gates the checkout CTA with a "Min RM X for delivery" label.
+7. Promo codes: `WELCOME10` -> 10% off, `BURGER20` -> 20% off (applied on Cart, carried through to Checkout discount line).
 
 ## Build & Deployment Notes
 
