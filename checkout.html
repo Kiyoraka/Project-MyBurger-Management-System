@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF6F0" />
+  <meta name="description" content="MyBurger checkout -- complete your order with Billplz secure payment." />
+  <title>MyBurger -- Checkout</title>
+
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" />
+
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/layout-customer.css" />
+  <link rel="stylesheet" href="/assets/css/pages/checkout.css" />
+</head>
+<body>
+  <div class="c-shell">
+
+    <div data-slot="c-topnav"></div>
+
+    <main class="c-main c-checkout" id="main">
+
+      <header class="c-checkout__heading c-container">
+        <a class="c-checkout__back" href="/cart.html" aria-label="Back to cart">&larr; Cart</a>
+        <h1 class="c-checkout__title">Checkout</h1>
+        <span class="c-checkout__lock" aria-label="Secure">🔒 Secure</span>
+      </header>
+
+      <!-- Mobile collapsible summary -->
+      <details class="c-checkout__summary-mobile" data-summary-mobile>
+        <summary>
+          <span>Order Summary</span>
+          <span class="tabular" data-summary-total-mobile>RM 0.00</span>
+        </summary>
+        <div class="c-checkout__summary-mobile-body" data-summary-mobile-body></div>
+      </details>
+
+      <div class="c-checkout__layout c-container">
+
+        <!-- ============== Form (left, single-col mobile) ============== -->
+        <form class="c-checkout__form" id="checkout-form" novalidate>
+
+          <!-- 1. Contact -->
+          <section class="c-checkout__section" aria-labelledby="sec-contact">
+            <h2 class="c-checkout__section-title" id="sec-contact">1. Contact</h2>
+            <div class="c-checkout__grid">
+              <div class="field">
+                <label class="field__label" for="co-name">Name</label>
+                <input class="input" id="co-name" name="name" type="text" required autocomplete="name" />
+              </div>
+              <div class="field">
+                <label class="field__label" for="co-phone">Phone</label>
+                <input class="input" id="co-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" />
+              </div>
+              <div class="field c-checkout__grid--span2">
+                <label class="field__label" for="co-email">Email</label>
+                <input class="input" id="co-email" name="email" type="email" required autocomplete="email" inputmode="email" />
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. Fulfilment -->
+          <section class="c-checkout__section" aria-labelledby="sec-fulfilment">
+            <h2 class="c-checkout__section-title" id="sec-fulfilment">2. Fulfilment</h2>
+
+            <div class="c-checkout__fulfilment">
+              <label class="choice">
+                <input type="radio" name="mode" value="pickup" checked data-co-mode="pickup" />
+                <span class="choice__label">Pickup</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="mode" value="delivery" data-co-mode="delivery" />
+                <span class="choice__label">Delivery</span>
+              </label>
+            </div>
+
+            <div class="c-checkout__grid">
+              <div class="field">
+                <label class="field__label" for="co-when">Time</label>
+                <div class="choice-group">
+                  <label class="choice">
+                    <input type="radio" name="when" value="asap" checked />
+                    <span class="choice__label">ASAP</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="when" value="schedule" />
+                    <span class="choice__label">Schedule</span>
+                  </label>
+                </div>
+              </div>
+              <div class="field" data-when-schedule hidden>
+                <label class="field__label" for="co-schedule">Schedule time</label>
+                <input class="input" id="co-schedule" name="scheduleTime" type="datetime-local" />
+              </div>
+            </div>
+
+            <div class="c-checkout__delivery" data-delivery-fields hidden>
+              <div class="c-checkout__grid">
+                <div class="field c-checkout__grid--span2">
+                  <label class="field__label" for="co-addr">Address</label>
+                  <input class="input" id="co-addr" name="address" type="text" autocomplete="street-address" />
+                </div>
+                <div class="field">
+                  <label class="field__label" for="co-postcode">Postcode</label>
+                  <input class="input" id="co-postcode" name="postcode" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="5" />
+                </div>
+                <div class="field">
+                  <label class="field__label" for="co-city">City</label>
+                  <input class="input" id="co-city" name="city" type="text" autocomplete="address-level2" />
+                </div>
+                <div class="field c-checkout__grid--span2">
+                  <label class="field__label" for="co-state">State</label>
+                  <select class="select" id="co-state" name="state" autocomplete="address-level1">
+                    <option value="">Select state</option>
+                    <option>Kelantan</option>
+                    <option>Terengganu</option>
+                    <option>Pahang</option>
+                    <option>Selangor</option>
+                    <option>Kuala Lumpur</option>
+                    <option>Johor</option>
+                    <option>Penang</option>
+                    <option>Perak</option>
+                    <option>Kedah</option>
+                    <option>Negeri Sembilan</option>
+                    <option>Melaka</option>
+                    <option>Sabah</option>
+                    <option>Sarawak</option>
+                    <option>Putrajaya</option>
+                    <option>Labuan</option>
+                    <option>Perlis</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. Payment -->
+          <section class="c-checkout__section" aria-labelledby="sec-payment">
+            <h2 class="c-checkout__section-title" id="sec-payment">3. Payment (Billplz)</h2>
+            <div class="c-checkout__payment">
+              <div class="c-checkout__method-tabs" role="tablist" aria-label="Payment methods">
+                <button type="button" class="pill is-active" role="tab" aria-selected="true" data-pay-method="fpx">FPX</button>
+                <button type="button" class="pill" role="tab" aria-selected="false" data-pay-method="card">Card</button>
+                <button type="button" class="pill" role="tab" aria-selected="false" data-pay-method="ewallet">E-Wallet</button>
+                <button type="button" class="pill" role="tab" aria-selected="false" data-pay-method="cash">Cash</button>
+              </div>
+
+              <div class="c-checkout__method-body" data-method-body>
+                <div class="field" data-pay-pane="fpx">
+                  <label class="field__label" for="co-bank">Bank</label>
+                  <select class="select" id="co-bank" name="bank">
+                    <option>Maybank2u</option>
+                    <option>CIMB Clicks</option>
+                    <option>Public Bank</option>
+                    <option>RHB</option>
+                    <option>Hong Leong Connect</option>
+                    <option>Bank Islam</option>
+                    <option>Bank Rakyat</option>
+                    <option>AmBank</option>
+                  </select>
+                  <p class="field__hint">You'll be redirected to Billplz to complete payment securely.</p>
+                </div>
+                <div class="field" data-pay-pane="card" hidden>
+                  <p class="field__hint">Card payment opens the Billplz card form on Place Order.</p>
+                </div>
+                <div class="field" data-pay-pane="ewallet" hidden>
+                  <p class="field__hint">E-Wallet supports GrabPay, Touch n Go, Boost via Billplz.</p>
+                </div>
+                <div class="field" data-pay-pane="cash" hidden>
+                  <p class="field__hint">Pay on collection (pickup) or on delivery.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </form>
+
+        <!-- ============== Order Summary (right, desktop only) ============== -->
+        <aside class="c-checkout__summary" aria-labelledby="sec-summary">
+          <h2 class="c-checkout__section-title" id="sec-summary">Order Summary</h2>
+          <ul class="c-checkout__summary-list" role="list" data-summary-list></ul>
+
+          <hr class="divider" />
+
+          <div class="c-checkout__totals">
+            <div class="c-checkout__total-row">
+              <span>Subtotal</span>
+              <span class="tabular" data-summary-subtotal>RM 0.00</span>
+            </div>
+            <div class="c-checkout__total-row" data-summary-delivery-row hidden>
+              <span>Delivery fee</span>
+              <span class="tabular" data-summary-delivery>RM 0.00</span>
+            </div>
+            <div class="c-checkout__total-row">
+              <span>Service (6%)</span>
+              <span class="tabular" data-summary-service>RM 0.00</span>
+            </div>
+            <div class="c-checkout__total-row" data-summary-discount-row hidden>
+              <span>Discount</span>
+              <span class="tabular" data-summary-discount>-RM 0.00</span>
+            </div>
+            <div class="c-checkout__total-row c-checkout__total-row--final">
+              <span>Total</span>
+              <span class="tabular" data-summary-total>RM 0.00</span>
+            </div>
+          </div>
+
+          <button type="submit" form="checkout-form" class="btn btn--primary btn--block btn--lg" data-co-submit>
+            Place Order &rarr;
+          </button>
+          <p class="c-checkout__terms">By placing your order you agree to our Terms.</p>
+        </aside>
+      </div>
+
+      <!-- Confirmation slate (shown after success) -->
+      <section class="c-checkout__confirmation" data-confirm hidden aria-live="polite">
+        <div class="c-checkout__confirmation-card">
+          <div class="c-checkout__confirmation-icon">✓</div>
+          <h2 class="c-checkout__confirmation-title">Order received</h2>
+          <p class="c-checkout__confirmation-sub">
+            Order <strong data-confirm-number>#1042</strong> &middot;
+            ETA <strong data-confirm-eta>~15 min</strong>
+          </p>
+          <p class="c-checkout__confirmation-amount">
+            Total paid <strong class="tabular" data-confirm-total>RM 0.00</strong>
+          </p>
+          <p class="c-checkout__confirmation-hint">
+            We've sent the receipt to your email. Track your order on the kitchen board.
+          </p>
+          <div class="c-checkout__confirmation-ctas">
+            <a class="btn btn--primary btn--lg" href="/menu.html">Order again</a>
+            <a class="btn btn--secondary btn--lg" href="/index.html">Back to home</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <div data-slot="c-bottomnav"></div>
+  </div>
+
+  <script src="/assets/js/state.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/customer/nav.js"></script>
+  <script src="/assets/js/customer/checkout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.MyBurger && window.MyBurger.api && window.MyBurger.api.hydrate) {
+        window.MyBurger.api.hydrate();
+      }
+      var nav = window.MyBurger && window.MyBurger.customer && window.MyBurger.customer.nav;
+      if (nav) {
+        nav.renderTopNav('cart');
+        nav.renderBottomNav('cart');
+      }
+      if (window.MyBurger && window.MyBurger.customer && window.MyBurger.customer.checkout) {
+        window.MyBurger.customer.checkout.render();
+      }
+    });
+  </script>
+</body>
+</html>
