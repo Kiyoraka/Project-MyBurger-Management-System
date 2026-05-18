@@ -26,9 +26,10 @@
   const qs  = UI.qs;
   const qsa = UI.qsa;
 
-  const STATUSES = ['NEW', 'PREP', 'READY', 'DONE'];
-  const NEXT_STATUS = { NEW: 'PREP', PREP: 'READY', READY: 'DONE' };
-  const CTA_LABEL   = { NEW: 'Accept', PREP: 'Mark Ready', READY: 'Complete' };
+  const STATUSES = ['NEW', 'PREPARING', 'READY', 'DONE'];
+  const NEXT_STATUS = { NEW: 'PREPARING', PREPARING: 'READY', READY: 'DONE' };
+  const CTA_LABEL   = { NEW: 'Accept', PREPARING: 'Mark Ready', READY: 'Complete' };
+  const SHORT       = { NEW: 'new', PREPARING: 'prep', READY: 'ready', DONE: 'done' };
 
   let activeMobileStatus = 'NEW';
 
@@ -235,12 +236,43 @@
         && a.getDate() === b.getDate();
   }
 
-  /* Live update on order changes */
+  /* Live update on order changes -- detect newly arrived NEW orders */
+  let lastNewCount = -1;
+
   STATE.subscribe(STATE.KEYS.ORDERS, function () {
     renderKpis();
     renderColumns();
     applyMobileFilter();
+
+    const orders = API.orders.list() || [];
+    const newOrders = orders.filter(function (o) { return (o.status || 'NEW') === 'NEW'; });
+    if (lastNewCount >= 0 && newOrders.length > lastNewCount) {
+      const settings = (STATE.getStore(STATE.KEYS.SETTINGS, {}) || {});
+      const wantSound = !(settings.notifications && settings.notifications.newOrderSound === false);
+      UI.toast('New order #' + newOrders[0].number, { variant: 'success' });
+      if (wantSound) playBeep();
+    }
+    lastNewCount = newOrders.length;
   });
+
+  function playBeep() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.15, ctx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.32);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.35);
+    } catch (err) {
+      /* audio context unavailable -- silent fallback */
+    }
+  }
 
   /* Re-render time chips every 30s */
   setInterval(function () {

@@ -236,3 +236,9 @@
   color: var(--clr-cream);
   font-weight: var(--fw-bold);
 }
+
+/* Alias so .status--preparing (full canonical status) styles like .status--prep */
+.status--preparing {
+  background-color: var(--clr-mustard-100);
+  color: var(--clr-mustard-700);
+}
