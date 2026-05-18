@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>MyBurger Admin -- Products</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/layout-admin.css" />
+  <link rel="stylesheet" href="/assets/css/pages/admin-products.css" />
+
+  <script src="/assets/js/state.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/admin/auth.js"></script>
+  <script>
+    if (window.MyBurger && window.MyBurger.admin && window.MyBurger.admin.auth) {
+      window.MyBurger.admin.auth.guard();
+    }
+  </script>
+</head>
+<body>
+  <div class="a-shell">
+    <div data-slot="a-sidebar"></div>
+    <div class="a-main">
+      <div data-slot="a-topbar"></div>
+      <div class="a-content">
+
+        <header class="a-prod__toolbar">
+          <select class="select" data-prod-category>
+            <option value="">All categories</option>
+          </select>
+          <input class="input" type="search" placeholder="Search product..." data-prod-search />
+          <button type="button" class="btn btn--primary" data-prod-new>+ New Product</button>
+        </header>
+
+        <!-- Desktop grid -->
+        <section class="a-prod__grid" data-prod-grid></section>
+
+        <!-- Mobile list -->
+        <section class="a-prod__list" data-prod-list></section>
+      </div>
+    </div>
+    <div data-slot="a-bottomnav"></div>
+  </div>
+
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/admin/nav.js"></script>
+  <script src="/assets/js/admin/products.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.MyBurger && window.MyBurger.api && window.MyBurger.api.hydrate) {
+        window.MyBurger.api.hydrate();
+      }
+      var nav = window.MyBurger && window.MyBurger.admin && window.MyBurger.admin.nav;
+      if (nav) {
+        nav.renderSidebar('products');
+        nav.renderTopbar({ title: 'Products' });
+        nav.renderBottomNav('products');
+      }
+      if (window.MyBurger && window.MyBurger.admin && window.MyBurger.admin.products) {
+        window.MyBurger.admin.products.render();
+      }
+    });
+  </script>
+</body>
+</html>
