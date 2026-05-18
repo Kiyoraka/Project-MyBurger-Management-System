@@ -1,0 +1,103 @@
+/* ============================================================
+   MyBurger -- Admin Settings
+   ============================================================ */
+
+.a-set__tabs {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  overflow-x: auto;
+  padding-bottom: var(--sp-2);
+}
+
+.a-set__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-rest);
+  padding: var(--sp-5);
+}
+
+@media (min-width: 1024px) {
+  .a-set__panel {
+    padding: var(--sp-6) var(--sp-8);
+  }
+}
+
+.a-set__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.a-set__section-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-18);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.a-set__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+}
+
+@media (min-width: 600px) {
+  .a-set__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.a-set__grid--span2 {
+  grid-column: 1 / -1;
+}
+
+.a-set__footer {
+  display: flex;
+  gap: var(--sp-2);
+  justify-content: flex-end;
+}
+
+.a-set__logo-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--sp-3);
+  align-items: center;
+}
+
+.a-set__logo {
+  width: 80px;
+  height: 80px;
+  background-color: var(--bg-surface-alt);
+  border-radius: var(--radius-card);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.a-set__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: var(--sp-2);
+}
+
+.a-set__secret-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: var(--sp-2);
+}
+
+.a-set__hours-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+.a-set__hours-row span {
+  font-weight: var(--fw-semibold);
+}
