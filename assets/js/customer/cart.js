@@ -59,6 +59,7 @@
           STATE.setStore('myburger:cart-mode', currentMode);
           renderTotals();
           updateEta();
+          enforceMinOrder();
         }
       });
     });
@@ -107,6 +108,7 @@
     });
 
     renderTotals();
+    enforceMinOrder();
   }
 
   function buildLine(line, index) {
@@ -296,8 +298,36 @@
     return { ok: false, percent: 0, message: 'Invalid or expired promo code.' };
   }
 
-  /* Re-render when cart changes (from any tab / page) */
-  STATE.subscribe(STATE.KEYS.CART, renderLines);
+  function enforceMinOrder() {
+    const settings   = (STATE.getStore(STATE.KEYS.SETTINGS, {}) || {});
+    const fulfilment = (settings.site && settings.site.fulfilment) || {};
+    const min = Number(fulfilment.minOrderForDelivery) || 0;
+    const cart = STATE.getStore(STATE.KEYS.CART, []) || [];
+    const subtotal = cart.reduce(function (s, l) { return s + (Number(l.lineTotal) || 0); }, 0);
+
+    const checkout = qs('[data-cart-checkout]');
+    if (!checkout) return;
+
+    if (currentMode === 'delivery' && min > 0 && subtotal < min) {
+      checkout.setAttribute('aria-disabled', 'true');
+      checkout.classList.add('btn--disabled');
+      checkout.textContent = 'Min ' + API.formatRM(min) + ' for delivery';
+    } else {
+      checkout.removeAttribute('aria-disabled');
+      checkout.classList.remove('btn--disabled');
+      checkout.textContent = 'Checkout';
+    }
+  }
+
+  /* Re-render when cart or settings change (from any tab / page) */
+  STATE.subscribe(STATE.KEYS.CART, function () {
+    renderLines();
+    enforceMinOrder();
+  });
+  STATE.subscribe(STATE.KEYS.SETTINGS, function () {
+    renderTotals();
+    enforceMinOrder();
+  });
 
   /* ---------- Expose ---------- */
 

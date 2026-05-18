@@ -388,8 +388,9 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /* Re-render summary on cart changes (rare on checkout page, but safe) */
-  STATE.subscribe(STATE.KEYS.CART, renderSummary);
+  /* Re-render summary on cart or settings changes */
+  STATE.subscribe(STATE.KEYS.CART,     renderSummary);
+  STATE.subscribe(STATE.KEYS.SETTINGS, renderSummary);
 
   /* ---------- Expose ---------- */
 

@@ -238,14 +238,48 @@
     );
   }
 
+  /* ---------- Settings-driven site copy ---------- */
+
+  function applySiteSettings() {
+    const settings = (STATE.getStore(STATE.KEYS.SETTINGS, {}) || {});
+    const site = settings.site || {};
+
+    /* Hero title / subtext / media */
+    if (site.hero) {
+      setText('[data-hero="title"]',   site.hero.headline);
+      setText('[data-hero="subtext"]', site.hero.subtext);
+      const mediaImg = document.querySelector('[data-hero="media"] img');
+      if (mediaImg && site.hero.image) mediaImg.src = site.hero.image;
+    }
+
+    /* Footer */
+    setText('[data-footer="tagline"]', site.hero && site.hero.subtext);
+    setText('[data-footer="year"]', String(new Date().getFullYear()));
+
+    /* Document title + brand */
+    if (site.name) {
+      document.title = site.name + ' -- Fresh. Smashed. Always.';
+    }
+  }
+
+  function setText(selector, text) {
+    if (text == null || text === '') return;
+    const node = document.querySelector(selector);
+    if (node) node.textContent = text;
+  }
+
   /* ---------- Boot ---------- */
 
   function render() {
     API.ready().then(function () {
+      applySiteSettings();
       renderPopular();
       renderBento();
     });
   }
+
+  /* Live re-apply when admin Saves Settings -> Site changes */
+  STATE.subscribe(STATE.KEYS.SETTINGS, applySiteSettings);
 
   /* Re-render Popular when product list changes (admin edit / inventory restock) */
   STATE.subscribe(STATE.KEYS.PRODUCTS, function () {
