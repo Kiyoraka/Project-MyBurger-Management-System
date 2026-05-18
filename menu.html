@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF6F0" />
+  <meta name="description" content="The full MyBurger menu -- burgers, sides, drinks, combos, desserts. Customise and add to cart." />
+  <title>MyBurger -- Menu</title>
+
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" />
+
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/layout-customer.css" />
+  <link rel="stylesheet" href="/assets/css/pages/menu.css" />
+</head>
+<body>
+  <div class="c-shell">
+
+    <div data-slot="c-topnav"></div>
+
+    <main class="c-main c-menu" id="main">
+
+      <header class="c-menu__heading c-container">
+        <p class="c-menu__eyebrow">The full lineup</p>
+        <h1 class="c-menu__title">Menu</h1>
+      </header>
+
+      <!-- Mobile horizontal category pill chips (sticky under top-nav) -->
+      <nav class="c-menu__chips" aria-label="Category filters" data-menu-chips></nav>
+
+      <div class="c-menu__layout c-container">
+
+        <!-- Desktop sticky category sidebar -->
+        <aside class="c-menu__sidebar" aria-label="Categories">
+          <h2 class="c-menu__sidebar-title">Categories</h2>
+          <ul class="c-menu__sidebar-list" role="list" data-menu-sidebar></ul>
+        </aside>
+
+        <!-- Product grid (sections per category) -->
+        <section class="c-menu__content" aria-live="polite" data-menu-content>
+          <!-- Sections injected by menu.js -->
+        </section>
+      </div>
+    </main>
+
+    <!-- Sticky bottom view-cart bar (mobile, when cart > 0) -->
+    <a href="/cart.html"
+       class="c-sticky-cart"
+       data-cart-sticky
+       hidden
+       aria-label="View cart">
+      <span class="c-sticky-cart__count" data-cart-sticky-count>0</span>
+      <span data-cart-sticky-label>View Cart</span>
+      <span class="c-sticky-cart__total" data-cart-sticky-total>RM 0.00</span>
+    </a>
+
+    <div data-slot="c-bottomnav"></div>
+  </div>
+
+  <script src="/assets/js/state.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/customer/nav.js"></script>
+  <script src="/assets/js/customer/menu.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.MyBurger && window.MyBurger.api && window.MyBurger.api.hydrate) {
+        window.MyBurger.api.hydrate();
+      }
+      var nav = window.MyBurger && window.MyBurger.customer && window.MyBurger.customer.nav;
+      if (nav) {
+        nav.renderTopNav('menu');
+        nav.renderBottomNav('menu');
+      }
+      if (window.MyBurger && window.MyBurger.customer && window.MyBurger.customer.menu) {
+        window.MyBurger.customer.menu.render();
+      }
+    });
+  </script>
+</body>
+</html>
