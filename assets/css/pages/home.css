@@ -1,0 +1,168 @@
+/* ============================================================
+   MyBurger -- Home (page overrides)
+   Small additions on top of layout-customer.css for the
+   landing page's Popular cards, bento tile copy, and section
+   spacing nuances. Everything else inherits.
+   ============================================================ */
+
+
+/* ---------- Hero -- one-off polish ---------- */
+
+.c-hero {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(244, 162, 97, 0.18), transparent 55%),
+    radial-gradient(circle at 10% 90%, rgba(230, 57, 70, 0.12),  transparent 60%),
+    var(--clr-cream);
+}
+
+
+/* ---------- Popular -- product card composes .card ---------- */
+
+.c-popular-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-rest);
+  overflow: hidden;
+  transition:
+    box-shadow var(--dur-base) var(--ease-out),
+    transform  var(--dur-base) var(--ease-out);
+}
+
+.c-popular-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.c-popular-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background-color: var(--bg-surface-alt);
+  overflow: hidden;
+}
+
+.c-popular-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.c-popular-card:hover .c-popular-card__media img {
+  transform: scale(1.03);
+}
+
+.c-popular-card__chips {
+  position: absolute;
+  top: var(--sp-2);
+  left: var(--sp-2);
+  display: flex;
+  gap: var(--sp-1);
+}
+
+.c-popular-card__chips .pill {
+  min-height: 24px;
+  padding: 2px var(--sp-2);
+  font-size: var(--fs-12);
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-rest);
+}
+
+.c-popular-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4) var(--sp-4);
+}
+
+.c-popular-card__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-20);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-snug);
+  color: var(--text-primary);
+}
+
+.c-popular-card__desc {
+  font-size: var(--fs-14);
+  color: var(--text-secondary);
+  line-height: var(--lh-snug);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(var(--fs-14) * var(--lh-snug) * 2);
+}
+
+.c-popular-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--sp-1);
+}
+
+.c-popular-card__price {
+  font-size: var(--fs-18);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+
+/* ---------- Empty state for grids (before hydration / when empty) ---------- */
+
+.c-empty {
+  grid-column: 1 / -1;
+  padding: var(--sp-8) 0;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: var(--fs-14);
+}
+
+
+/* ---------- Categories bento -- icon fallback when no image ---------- */
+
+.c-bento__tile {
+  background:
+    linear-gradient(135deg, var(--clr-cream-200) 0%, var(--clr-line) 100%);
+}
+
+.c-bento__tile--burgers   { background-color: var(--clr-red-100); }
+.c-bento__tile--sides     { background-color: var(--clr-mustard-100); }
+.c-bento__tile--drinks    { background-color: var(--clr-pickle-100); }
+.c-bento__tile--combos    { background-color: var(--clr-cream-200); }
+.c-bento__tile--desserts  { background-color: var(--clr-red-100); }
+
+.c-bento__icon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--clr-char);
+  opacity: 0.35;
+}
+
+.c-bento__icon svg {
+  width: 56%;
+  max-width: 220px;
+  height: auto;
+  position: relative;
+  inset: auto;
+}
+
+@media (min-width: 1024px) {
+  .c-bento__icon svg {
+    width: 44%;
+  }
+}
+
+
+/* ---------- About / Locations -- looser line for in-page anchors ---------- */
+
+#about .c-hero__subtext,
+#locations .c-hero__subtext {
+  font-size: var(--fs-18);
+  line-height: var(--lh-relaxed);
+  max-width: 64ch;
+}
