@@ -190,12 +190,59 @@
     return header;
   }
 
-  /* ---------- Bottom-nav render (placeholder -- detailed in Task 4) ---------- */
+  /* ---------- Bottom-nav config (mobile only, 4-tab customer variant) ---------- */
+
+  const BOTTOM_TABS = [
+    { route: 'home',    label: 'Home',    href: '/index.html', icon: iconHome },
+    { route: 'menu',    label: 'Menu',    href: '/menu.html',  icon: iconBurgerGlyph },
+    { route: 'cart',    label: 'Cart',    href: '/cart.html',  icon: iconCart,    badge: true },
+    { route: 'account', label: 'Account', href: '/index.html#account', icon: iconAccount }
+  ];
+
+  /* ---------- Bottom-nav render ---------- */
 
   function renderBottomNav(currentRoute, target) {
-    // Intentionally minimal here -- the full implementation lands in nav-bottom.
-    // This stub keeps the module's public surface stable across both tasks.
-    return null;
+    const slot = resolveSlot(target, '[data-slot="c-bottomnav"]');
+
+    const items = BOTTOM_TABS.map(function (tab) {
+      const children = [tab.icon(), el('span', { class: 'c-bottomnav__label', text: tab.label })];
+      if (tab.badge) {
+        children.push(
+          el('span', {
+            class: 'badge c-bottomnav__badge',
+            dataset: { cartBadge: '' },
+            hidden: 'hidden'
+          })
+        );
+      }
+      return el(
+        'a',
+        {
+          href: tab.href,
+          class: 'c-bottomnav__item',
+          dataset: { navItem: tab.route },
+          'aria-label': tab.label
+        },
+        children
+      );
+    });
+
+    const nav = el(
+      'nav',
+      { class: 'c-bottomnav', 'aria-label': 'Mobile primary', dataset: { bottomnav: '' } },
+      [el('div', { class: 'c-bottomnav__inner' }, items)]
+    );
+
+    if (slot) {
+      slot.replaceWith(nav);
+    } else {
+      document.body.appendChild(nav);
+    }
+
+    if (currentRoute) UI.setActiveNav(currentRoute);
+    UI.refreshCartBadge();
+
+    return nav;
   }
 
   /* ---------- Slot resolution ---------- */
@@ -280,6 +327,7 @@
   window.MyBurger.customer.nav = {
     renderTopNav:    renderTopNav,
     renderBottomNav: renderBottomNav,
-    TOP_LINKS:       TOP_LINKS
+    TOP_LINKS:       TOP_LINKS,
+    BOTTOM_TABS:     BOTTOM_TABS
   };
 })();
