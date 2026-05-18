@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF6F0" />
+  <title>MyBurger Admin -- Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" />
+
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/layout-admin.css" />
+  <link rel="stylesheet" href="/assets/css/pages/admin-dashboard.css" />
+
+  <script src="/assets/js/state.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/admin/auth.js"></script>
+  <script>
+    if (window.MyBurger && window.MyBurger.admin && window.MyBurger.admin.auth) {
+      window.MyBurger.admin.auth.guard();
+    }
+  </script>
+</head>
+<body>
+  <div class="a-shell">
+    <div data-slot="a-sidebar"></div>
+    <div class="a-main">
+      <div data-slot="a-topbar"></div>
+
+      <div class="a-content">
+
+        <!-- KPI row -->
+        <section class="a-kpis" aria-label="Today snapshot" data-kpis>
+          <!-- Cards injected by dashboard.js -->
+        </section>
+
+        <!-- Live Queue + Low Stock -->
+        <div class="a-dash-row">
+          <section class="a-widget" aria-labelledby="w-queue">
+            <header class="a-widget__header">
+              <h2 class="a-widget__title" id="w-queue">Live Order Queue</h2>
+              <a class="a-widget__more" href="/admin/orders.html">View all &rarr;</a>
+            </header>
+            <ul class="a-widget__list" role="list" data-queue></ul>
+          </section>
+
+          <section class="a-widget" aria-labelledby="w-low">
+            <header class="a-widget__header">
+              <h2 class="a-widget__title" id="w-low">Low-Stock Alerts</h2>
+              <a class="a-widget__more" href="/admin/inventory.html">Restock now &rarr;</a>
+            </header>
+            <ul class="a-widget__list" role="list" data-low-stock></ul>
+          </section>
+        </div>
+
+        <!-- Top Items + Quick Actions -->
+        <div class="a-dash-row">
+          <section class="a-widget" aria-labelledby="w-top">
+            <header class="a-widget__header">
+              <h2 class="a-widget__title" id="w-top">Top Items Today</h2>
+            </header>
+            <ol class="a-widget__list a-widget__list--num" data-top-items></ol>
+          </section>
+
+          <section class="a-widget" aria-labelledby="w-quick">
+            <header class="a-widget__header">
+              <h2 class="a-widget__title" id="w-quick">Quick Actions</h2>
+            </header>
+            <div class="a-quick">
+              <a class="btn btn--secondary btn--sm" href="/admin/products.html?new=1">+ New Product</a>
+              <a class="btn btn--secondary btn--sm" href="/admin/orders.html?new=1">+ New Order</a>
+              <a class="btn btn--secondary btn--sm" href="/admin/inventory.html?restock=1">📊 Restock</a>
+              <a class="btn btn--secondary btn--sm" href="/admin/settings.html">⚙ Settings</a>
+              <a class="btn btn--secondary btn--sm" href="/index.html" target="_blank" rel="noopener">🌐 Storefront</a>
+            </div>
+          </section>
+        </div>
+
+        <!-- Sparkline -->
+        <section class="a-widget" aria-labelledby="w-spark">
+          <header class="a-widget__header">
+            <h2 class="a-widget__title" id="w-spark">Revenue · last 7 days</h2>
+          </header>
+          <div class="a-spark" data-sparkline></div>
+        </section>
+      </div>
+    </div>
+
+    <div data-slot="a-bottomnav"></div>
+  </div>
+
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/admin/nav.js"></script>
+  <script src="/assets/js/admin/dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.MyBurger && window.MyBurger.api && window.MyBurger.api.hydrate) {
+        window.MyBurger.api.hydrate();
+      }
+      var nav = window.MyBurger && window.MyBurger.admin && window.MyBurger.admin.nav;
+      if (nav) {
+        nav.renderSidebar('dashboard');
+        nav.renderTopbar({ title: 'Dashboard' });
+        nav.renderBottomNav('dashboard');
+      }
+      if (window.MyBurger && window.MyBurger.admin && window.MyBurger.admin.dashboard) {
+        window.MyBurger.admin.dashboard.render();
+      }
+    });
+  </script>
+</body>
+</html>
