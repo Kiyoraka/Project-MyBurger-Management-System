@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF6F0" />
+  <meta name="description" content="Your MyBurger cart -- review your order before checkout." />
+  <title>MyBurger -- Cart</title>
+
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" />
+
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/layout-customer.css" />
+  <link rel="stylesheet" href="/assets/css/pages/cart.css" />
+</head>
+<body>
+  <div class="c-shell">
+
+    <div data-slot="c-topnav"></div>
+
+    <main class="c-main c-cart" id="main">
+      <div class="c-cart__panel">
+
+        <header class="c-cart__header">
+          <h1 class="c-cart__title">Your Order</h1>
+          <p class="c-cart__subtitle" data-cart-eta>Pickup &middot; ready in ~15 min</p>
+        </header>
+
+        <!-- Pickup / Delivery toggle -->
+        <section class="c-cart__fulfilment" aria-label="Fulfilment">
+          <label class="choice">
+            <input type="radio" name="cart-mode" value="pickup" checked data-cart-mode="pickup" />
+            <span class="choice__label">Pickup</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="cart-mode" value="delivery" data-cart-mode="delivery" />
+            <span class="choice__label">Delivery</span>
+          </label>
+        </section>
+
+        <!-- Line items -->
+        <section class="c-cart__items" aria-live="polite" data-cart-items>
+          <!-- Lines injected by cart.js -->
+        </section>
+
+        <!-- Empty state -->
+        <div class="c-cart__empty" data-cart-empty hidden>
+          <p>Your cart is empty.</p>
+          <a class="btn btn--primary btn--lg" href="/menu.html">Browse menu</a>
+        </div>
+
+        <!-- Promo code -->
+        <section class="c-cart__promo">
+          <label class="field__label" for="promo-input">Promo code</label>
+          <div class="c-cart__promo-row">
+            <input class="input" id="promo-input" type="text" placeholder="Enter promo" data-cart-promo-input />
+            <button type="button" class="btn btn--secondary" data-cart-promo-apply>Apply</button>
+          </div>
+          <p class="field__hint" data-cart-promo-msg hidden></p>
+        </section>
+
+        <!-- Totals -->
+        <section class="c-cart__totals" aria-label="Order totals">
+          <div class="c-cart__total-row">
+            <span>Subtotal</span>
+            <span class="tabular" data-cart-subtotal>RM 0.00</span>
+          </div>
+          <div class="c-cart__total-row" data-cart-delivery-row hidden>
+            <span>Delivery fee</span>
+            <span class="tabular" data-cart-delivery>RM 0.00</span>
+          </div>
+          <div class="c-cart__total-row">
+            <span>Service (6%)</span>
+            <span class="tabular" data-cart-service>RM 0.00</span>
+          </div>
+          <div class="c-cart__total-row" data-cart-discount-row hidden>
+            <span>Discount</span>
+            <span class="tabular" data-cart-discount>-RM 0.00</span>
+          </div>
+          <hr class="divider" />
+          <div class="c-cart__total-row c-cart__total-row--final">
+            <span>Total</span>
+            <span class="tabular" data-cart-total>RM 0.00</span>
+          </div>
+        </section>
+
+        <footer class="c-cart__cta">
+          <a class="btn btn--primary btn--block btn--lg" href="/checkout.html" data-cart-checkout>Checkout</a>
+        </footer>
+      </div>
+    </main>
+
+    <div data-slot="c-bottomnav"></div>
+  </div>
+
+  <script src="/assets/js/state.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/customer/nav.js"></script>
+  <script src="/assets/js/customer/cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.MyBurger && window.MyBurger.api && window.MyBurger.api.hydrate) {
+        window.MyBurger.api.hydrate();
+      }
+      var nav = window.MyBurger && window.MyBurger.customer && window.MyBurger.customer.nav;
+      if (nav) {
+        nav.renderTopNav('cart');
+        nav.renderBottomNav('cart');
+      }
+      if (window.MyBurger && window.MyBurger.customer && window.MyBurger.customer.cart) {
+        window.MyBurger.customer.cart.render();
+      }
+    });
+  </script>
+</body>
+</html>
