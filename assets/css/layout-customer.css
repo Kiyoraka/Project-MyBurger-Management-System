@@ -1,0 +1,712 @@
+/* ============================================================
+   MyBurger -- Customer Layout
+   Page chrome shared by every customer-facing surface:
+   top-nav, mobile bottom-nav, hero, bento grid, product
+   card grid, sticky cart bar, footer. Load AFTER components.css.
+   ============================================================ */
+
+
+/* ============================================================
+   Customer Shell
+   ============================================================ */
+
+.c-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background-color: var(--bg-page);
+}
+
+.c-main {
+  flex: 1;
+  width: 100%;
+}
+
+/* On mobile, leave room for the fixed bottom-nav so content does not hide under it */
+@media (max-width: 767px) {
+  .c-main {
+    padding-bottom: calc(var(--bottom-nav-height) + var(--sp-4));
+  }
+}
+
+.c-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--sp-4);
+}
+
+@media (min-width: 768px) {
+  .c-container {
+    padding-inline: var(--sp-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .c-container {
+    padding-inline: var(--sp-8);
+  }
+}
+
+
+/* ============================================================
+   Top Nav (sticky, transparent over hero -> solid on scroll)
+   The .is-solid class is toggled by JS once page scroll > 16px.
+   ============================================================ */
+
+.c-topnav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  width: 100%;
+  background-color: transparent;
+  backdrop-filter: none;
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    box-shadow       var(--dur-base) var(--ease-out),
+    backdrop-filter  var(--dur-base) var(--ease-out);
+}
+
+.c-topnav.is-solid {
+  background-color: rgba(250, 246, 240, 0.92);
+  backdrop-filter: saturate(140%) blur(10px);
+  box-shadow: 0 1px 0 var(--border-default);
+}
+
+.c-topnav__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  height: var(--nav-height-mobile);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--sp-4);
+}
+
+@media (min-width: 1024px) {
+  .c-topnav__inner {
+    height: var(--nav-height-desktop);
+    padding-inline: var(--sp-8);
+    gap: var(--sp-6);
+  }
+}
+
+.c-topnav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 36px;
+}
+
+.c-topnav__logo img,
+.c-topnav__logo svg {
+  height: 100%;
+  width: auto;
+}
+
+.c-topnav__links {
+  display: none;
+  align-items: center;
+  gap: var(--sp-5);
+  flex: 1;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .c-topnav__links {
+    display: inline-flex;
+  }
+}
+
+.c-topnav__link {
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-pill);
+  position: relative;
+  transition: color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+}
+
+.c-topnav__link:hover {
+  background-color: var(--clr-mustard-100);
+}
+
+.c-topnav__link.is-active {
+  color: var(--clr-red);
+  font-weight: var(--fw-semibold);
+}
+
+.c-topnav__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-left: auto;
+}
+
+.c-topnav__icon-btn {
+  position: relative;
+  width: var(--touch-min);
+  height: var(--touch-min);
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-char);
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.c-topnav__icon-btn:hover {
+  background-color: var(--clr-cream-200);
+}
+
+.c-topnav__icon-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.c-topnav__cart-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  pointer-events: none;
+}
+
+.c-topnav__hamburger {
+  display: inline-flex;
+}
+
+@media (min-width: 1024px) {
+  .c-topnav__hamburger {
+    display: none;
+  }
+}
+
+
+/* ============================================================
+   Bottom Nav (mobile only -- fixed, 4-tab customer variant)
+   Admin variant is in layout-admin.css with 5 tabs.
+   ============================================================ */
+
+.c-bottomnav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-nav-height);
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-default);
+  z-index: var(--z-sticky);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (max-width: 767px) {
+  .c-bottomnav {
+    display: flex;
+  }
+}
+
+.c-bottomnav__inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 100%;
+  width: 100%;
+}
+
+.c-bottomnav__item {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--clr-muted);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-medium);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.c-bottomnav__item svg {
+  width: 22px;
+  height: 22px;
+}
+
+.c-bottomnav__item.is-active {
+  color: var(--clr-red);
+}
+
+.c-bottomnav__item.is-active svg {
+  stroke-width: 2.25;
+}
+
+.c-bottomnav__badge {
+  position: absolute;
+  top: 8px;
+  left: calc(50% + 6px);
+}
+
+
+/* ============================================================
+   Hero (landing page)
+   ============================================================ */
+
+.c-hero {
+  position: relative;
+  width: 100%;
+  background-color: var(--clr-cream);
+  overflow: hidden;
+}
+
+.c-hero__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--sp-8) var(--sp-4) var(--sp-12);
+}
+
+@media (min-width: 1024px) {
+  .c-hero__inner {
+    grid-template-columns: 1.05fr 1fr;
+    gap: var(--sp-12);
+    padding: var(--sp-16) var(--sp-8) var(--sp-20);
+  }
+}
+
+.c-hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  order: 2;
+}
+
+@media (min-width: 1024px) {
+  .c-hero__copy {
+    order: 1;
+  }
+}
+
+.c-hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--clr-red);
+}
+
+.c-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--fs-40), 7vw, var(--fs-80));
+  font-weight: var(--fw-black);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--clr-char);
+}
+
+.c-hero__title-divider {
+  width: 80px;
+  height: 4px;
+  background-color: var(--clr-red);
+  border: 0;
+  margin: var(--sp-2) 0 0;
+}
+
+.c-hero__subtext {
+  font-size: var(--fs-18);
+  line-height: var(--lh-relaxed);
+  color: var(--text-secondary);
+  max-width: 52ch;
+}
+
+.c-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+
+.c-hero__media {
+  position: relative;
+  order: 1;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-card);
+  background-color: var(--bg-surface-alt);
+  overflow: hidden;
+  box-shadow: var(--shadow-hover);
+}
+
+@media (min-width: 1024px) {
+  .c-hero__media {
+    order: 2;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.c-hero__media img,
+.c-hero__media svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ============================================================
+   Section -- a horizontal band between hero and footer
+   ============================================================ */
+
+.c-section {
+  padding-block: var(--sp-10);
+}
+
+@media (min-width: 1024px) {
+  .c-section {
+    padding-block: var(--sp-16);
+  }
+}
+
+.c-section__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+
+.c-section__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-28);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--clr-char);
+}
+
+@media (min-width: 1024px) {
+  .c-section__title {
+    font-size: var(--fs-32);
+  }
+}
+
+.c-section__more {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-red);
+}
+
+.c-section__more:hover {
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   Product Card Grid (used on Home Popular + Menu page)
+   ============================================================ */
+
+.c-product-grid {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 768px) {
+  .c-product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .c-product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-6);
+  }
+}
+
+/* Product card -- composes the base .card with menu-specific bits */
+.c-product {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-product__chips {
+  position: absolute;
+  top: var(--sp-2);
+  left: var(--sp-2);
+  display: flex;
+  gap: var(--sp-1);
+}
+
+.c-product__chips .pill {
+  min-height: 24px;
+  padding: 2px var(--sp-2);
+  font-size: var(--fs-12);
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-rest);
+}
+
+
+/* ============================================================
+   Bento Grid (Categories tile on Home)
+   ============================================================ */
+
+.c-bento {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 140px;
+}
+
+@media (min-width: 768px) {
+  .c-bento {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    gap: var(--sp-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .c-bento {
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 200px;
+    gap: var(--sp-6);
+  }
+}
+
+.c-bento__tile {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-rest);
+  background-color: var(--bg-surface-alt);
+  cursor: pointer;
+  transition: box-shadow var(--dur-base) var(--ease-out),
+              transform  var(--dur-base) var(--ease-out);
+}
+
+.c-bento__tile:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.c-bento__tile img,
+.c-bento__tile svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.c-bento__tile:hover img,
+.c-bento__tile:hover svg {
+  transform: scale(1.04);
+}
+
+.c-bento__tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(27, 27, 30, 0.55) 100%);
+  pointer-events: none;
+}
+
+.c-bento__label {
+  position: absolute;
+  left: var(--sp-4);
+  bottom: var(--sp-4);
+  z-index: 1;
+  color: var(--clr-cream);
+  font-family: var(--font-display);
+  font-size: var(--fs-24);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ---- Bento sizing variants matching the home layout ---- */
+/* Desktop: BURGERS wide (span 3 cols, 1 row), SIDES/DRINKS/COMBOS 1col each,
+   DESSERTS wide (span 3 cols).  Mobile: each = 1 col, 1 row. */
+
+.c-bento__tile--wide-3 {
+  grid-column: span 2;
+}
+
+@media (min-width: 768px) {
+  .c-bento__tile--wide-3 {
+    grid-column: span 3;
+  }
+}
+
+
+/* ============================================================
+   Sticky Cart Bar (mobile -- appears on Menu when cart count > 0)
+   ============================================================ */
+
+.c-sticky-cart {
+  display: none;
+  position: fixed;
+  left: var(--sp-3);
+  right: var(--sp-3);
+  bottom: calc(var(--bottom-nav-height) + var(--sp-3));
+  z-index: var(--z-sticky);
+  background-color: var(--clr-red);
+  color: var(--clr-cream);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-hover);
+  padding: var(--sp-3) var(--sp-5);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-semibold);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  transform: translateY(120%);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+@media (max-width: 767px) {
+  .c-sticky-cart {
+    display: flex;
+  }
+}
+
+.c-sticky-cart.is-show {
+  transform: translateY(0);
+}
+
+.c-sticky-cart__count {
+  background-color: rgba(250, 246, 240, 0.22);
+  border-radius: var(--radius-pill);
+  padding: 2px var(--sp-2);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+}
+
+.c-sticky-cart__total {
+  font-variant-numeric: tabular-nums;
+  margin-left: auto;
+}
+
+
+/* ============================================================
+   Footer
+   ============================================================ */
+
+.c-footer {
+  background-color: var(--clr-char);
+  color: var(--clr-cream);
+  padding-block: var(--sp-10) var(--sp-6);
+  margin-top: var(--sp-12);
+}
+
+.c-footer__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-8);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--sp-4);
+}
+
+@media (min-width: 768px) {
+  .c-footer__inner {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    padding-inline: var(--sp-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .c-footer__inner {
+    padding-inline: var(--sp-8);
+  }
+}
+
+.c-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.c-footer__brand img,
+.c-footer__brand svg {
+  height: 40px;
+  width: auto;
+}
+
+.c-footer__tagline {
+  color: rgba(250, 246, 240, 0.75);
+  font-size: var(--fs-14);
+  max-width: 36ch;
+}
+
+.c-footer__col-title {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: rgba(250, 246, 240, 0.55);
+  margin-bottom: var(--sp-3);
+}
+
+.c-footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  list-style: none;
+}
+
+.c-footer__list a {
+  color: var(--clr-cream);
+  font-size: var(--fs-14);
+  opacity: 0.85;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.c-footer__list a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.c-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--sp-6) var(--sp-4) 0;
+  border-top: 1px solid rgba(250, 246, 240, 0.12);
+  margin-top: var(--sp-6);
+  font-size: var(--fs-12);
+  color: rgba(250, 246, 240, 0.6);
+}
+
+@media (min-width: 1024px) {
+  .c-footer__bottom {
+    padding-inline: var(--sp-8);
+  }
+}
+
+.c-footer__payments {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  opacity: 0.75;
+}
+
+.c-footer__payments .pill {
+  background-color: rgba(250, 246, 240, 0.08);
+  color: var(--clr-cream);
+  box-shadow: inset 0 0 0 1px rgba(250, 246, 240, 0.18);
+  font-size: var(--fs-12);
+}
