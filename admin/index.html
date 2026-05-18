@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF6F0" />
+  <meta name="description" content="MyBurger admin sign-in." />
+  <title>MyBurger Admin -- Sign In</title>
+
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" />
+
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/layout-admin.css" />
+</head>
+<body>
+  <div class="a-login">
+    <div class="a-login__card">
+
+      <div class="a-login__brand">
+        <img src="/assets/img/logo.svg" alt="MyBurger" />
+        <div>
+          <div class="a-login__title">Admin Sign-In</div>
+          <div class="a-login__hint-title">Operations console</div>
+        </div>
+      </div>
+
+      <form class="a-login__form" id="admin-login-form" autocomplete="on">
+        <div class="field">
+          <label class="field__label" for="login-email">Email</label>
+          <input
+            class="input"
+            id="login-email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            inputmode="email"
+            placeholder="you@myburger.com"
+          />
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="login-password">Password</label>
+          <input
+            class="input"
+            id="login-password"
+            name="password"
+            type="password"
+            required
+            autocomplete="current-password"
+            placeholder="••••••••"
+          />
+        </div>
+
+        <p class="a-login__error" data-login-error>Invalid email or password.</p>
+
+        <button type="submit" class="btn btn--primary btn--block btn--lg" data-login-submit>
+          Sign In
+        </button>
+      </form>
+
+      <div class="a-login__hint">
+        <span class="a-login__hint-title">Demo credentials (click to fill)</span>
+        <button type="button" class="a-login__hint-row" data-demo-fill>
+          <span>admin@gmail.com / admin123</span>
+          <span class="a-login__hint-arrow">&rarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/state.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/admin/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.MyBurger && window.MyBurger.api && window.MyBurger.api.hydrate) {
+        window.MyBurger.api.hydrate();
+      }
+      var auth = window.MyBurger && window.MyBurger.admin && window.MyBurger.admin.auth;
+      if (auth) {
+        auth.bindLoginForm();
+        // If already signed in, jump straight to dashboard
+        if (auth.isSignedIn()) window.location.replace('/admin/dashboard.html');
+      }
+    });
+  </script>
+</body>
+</html>
