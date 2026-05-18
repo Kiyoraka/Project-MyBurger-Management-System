@@ -167,7 +167,10 @@
       iconHamburger()
     );
 
+    const skip = el('a', { class: 'sr-only', href: '#main' }, 'Skip to content');
+
     const header = el('header', { class: 'c-topnav', dataset: { topnav: '' } }, [
+      skip,
       el('div', { class: 'c-topnav__inner' }, [
         brandLogo(),
         linksNav,

@@ -122,6 +122,27 @@ p, li, dd, blockquote {
   border: 0;
 }
 
+/* Skip-link variant: hidden until focused, then becomes visible chip */
+.sr-only:focus,
+.sr-only:focus-visible {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  width: auto;
+  height: auto;
+  padding: 8px 12px;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background-color: var(--clr-char);
+  color: var(--clr-cream);
+  border-radius: 8px;
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: 600;
+}
+
 /* 15. Focus -- visible-only outline using brand red. */
 :focus-visible {
   outline: 2px solid var(--clr-red);
